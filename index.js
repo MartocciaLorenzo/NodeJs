@@ -49,3 +49,8 @@ apiServer.get("/sudenti", (request, response) => {
   //preleva l'oggetto con id 1
   //send
 });
+
+apiServer.get("/NewSudenti", (request, response) => {
+  console.log("student id: ", request.query.id);
+  
+});
