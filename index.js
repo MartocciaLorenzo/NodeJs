@@ -1,5 +1,6 @@
 var express = require("express");
 var apiServer = express();
+var fs = require("fs");
 
 console.log("funziona");
 
@@ -28,5 +29,21 @@ apiServer.get("/mioNome", (request, response) => {
 
 apiServer.get("/somma", (request, response) => {
   console.log("somma request", request.query.nome);
-  response.send("risultato = "+(parseInt(request.query.a)+parseInt(request.query.b)));
+  response.send("risultato = " + (parseInt(request.query.a) + parseInt(request.query.b)));
+});
+
+apiServer.get("/sudenti", (request, response) => {
+  console.log("student id: ", request.query.id);
+  //leggere il file
+  fs.readFile("studenti.json", (err, data) => {
+    if(err){
+      console.log("error: "+err);
+    } 
+    else{
+      var students = JSON.parse(data);
+      console.log("studenti: "+students[0].surname)
+    };
+  });
+  //preleva l'oggetto con id 1
+  //send
 });
