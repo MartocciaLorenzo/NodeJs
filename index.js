@@ -41,11 +41,9 @@ apiServer.get("/sudenti", (request, response) => {
     } 
     else{
       var students = JSON.parse(data);
-      for(i = 0; i<students.length; i++){
-        console.log("studenti: "+students[i].name);
-        console.log("studenti: "+students[i].surname);
-        console.log("studenti: "+students[i].id);
-      }
+      response.send(
+        students.find(x => x.id === request.query.id)
+      )
     };
   });
   //preleva l'oggetto con id 1
